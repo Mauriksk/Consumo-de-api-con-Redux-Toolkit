@@ -21,8 +21,8 @@ function App() {
         <Navbar />
           
         <Routes>
-            <Route path='/Personaje' element={ <Personaje /> } />
             <Route path='/' element={ <Characters  /> } />
+            <Route path='/Personaje' element={ <Personaje /> } />
         </Routes>
           
       </Router>

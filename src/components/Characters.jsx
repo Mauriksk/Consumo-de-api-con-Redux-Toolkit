@@ -1,10 +1,10 @@
-import React, { useState, createContext, useContext, useEffect } from 'react'
+import React, {useEffect} from 'react'
 import { Link } from 'react-router-dom'
 
 
 //Redux
 import { fetchAllUsers } from '../store/slices/users'
-import {  useSelector } from 'react-redux'
+import {  useSelector, useDispatch } from 'react-redux'
 
 export const Characters = () => {
 
@@ -13,7 +13,12 @@ export const Characters = () => {
 
     console.log(list)
 
-    
+    const dispatch = useDispatch()
+
+
+    useEffect(() => {
+        dispatch(fetchAllUsers())
+    }, [dispatch])
 
 
     return (
