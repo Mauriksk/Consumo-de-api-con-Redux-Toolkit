@@ -20,9 +20,10 @@ export default userSlice.reducer;
 
 export const fetchAllUsers = () =>{
     return (dispatch) => {
-        axios.get('https://reqres.in/api/users?page=2')
+        axios.get('https://rickandmortyapi.com/api/character')
             .then((response)=>{
-                dispatch(setUsersList(response.data.data))
+                dispatch(setUsersList(response.data.results))
+                console.log(response.data.results)
             })
             .catch((error)=> console.log(error))
     }

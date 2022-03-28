@@ -9,9 +9,10 @@ export const ListarUsuariosAdorno = () => {
     const state = useSelector(state => state.users)
     const { list } = state;
 
+    console.log(list)
+
     const dispatch = useDispatch()
 
-    const users = []
 
     useEffect(() => {
         dispatch(fetchAllUsers())
@@ -20,14 +21,19 @@ export const ListarUsuariosAdorno = () => {
 
   return (
     <div className='container'>
+        <h2> Informacion de cada Personaje </h2>
         <div className='row'>
             {
             list.map(p => (
-                <div key={p.id} className='col-md-3'>
+                <div key={p.id} className=''>
                     <div className='card'>
-                        <img src={p.avatar} alt="" />
                         <div className='card-body'>
-                            <p>{p.email}</p>
+                            <h4>Nombre : { p.name }</h4>
+                            <p>Genero : { p.gender }</p>
+                            <p>Location : { p.location.name }</p>
+                            <p>Origen : { p.origin.name }</p>
+                            <p>Status : { p.status }</p>
+                            <p>Aparece en : { p.episode.length} capitulos</p>
                         </div>
                     </div>
                 </div>

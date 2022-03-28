@@ -1,31 +1,29 @@
-import React, { useState, createContext, useContext } from 'react'
+import React, { useState, createContext, useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Pagination } from './Pagination'
 
-export const Characters = ({characters = [], info, fetchCharacters}) => {
+
+//Redux
+import { fetchAllUsers } from '../store/slices/users'
+import {  useSelector } from 'react-redux'
+
+export const Characters = () => {
+
+    const state = useSelector(state => state.users)
+    const { list } = state;
+
+    console.log(list)
 
     
-
-    
-
-    const onPrevious = () => {
-        fetchCharacters(info.prev)
-    }
-
-    const onNext = () => {
-        fetchCharacters(info.next)
-    }
 
 
     return (
 
     <div className='container mt-5'>
-        <Pagination prev={info.prev} next={info.next} onPrevious={onPrevious} onNext={onNext} />
         <div className='row'>
         {
-            characters.map((item, index) => {
+            list.map((item) => {
                 return (
-                    <Link to='/Personaje' key={index} className='my-card'>
+                    <Link to='/Personaje' key={item.id} className='my-card'>
                         <img src={item.image} className="img img-responsive"/>
                         <div className="profile-position "><h3 className=''>{item.name}</h3></div>
                             <div className="profile-overview">
@@ -44,7 +42,6 @@ export const Characters = ({characters = [], info, fetchCharacters}) => {
                 })
         }
         </div>
-        <Pagination prev={info.prev} next={info.next} onPrevious={onPrevious} onNext={onNext} />
     </div>
   )
 }

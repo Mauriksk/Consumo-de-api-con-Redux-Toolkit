@@ -15,37 +15,14 @@ import store from './store';
 
 
 function App() {
-
-  const initialUrl = "https://rickandmortyapi.com/api/character"
-
-  const [characters, setCharacters] = useState([])
-  const [info, setInfo] = useState({})
-
-  const fetchCharacters = (url) => {
-    fetch(url)
-    .then(response => response.json())
-    .then(data => {
-      setCharacters(data.results)
-      setInfo(data.info)
-    })
-    .catch(error => console.log(error))
-  }
-
-  
-
-  useEffect(() => {
-    fetchCharacters(initialUrl)
-  }, [])
-  
-
   return (
     <Provider store={store}>
       <Router>
-        <Navbar brand='Rick and Morty App' />
+        <Navbar />
           
         <Routes>
             <Route path='/Personaje' element={ <Personaje /> } />
-            <Route path='/' element={ <Characters characters={characters} info={info} fetchCharacters={fetchCharacters} /> } />
+            <Route path='/' element={ <Characters  /> } />
         </Routes>
           
       </Router>
