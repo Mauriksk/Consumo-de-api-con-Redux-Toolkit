@@ -2,10 +2,12 @@ import React, {useEffect} from 'react'
 
 //Redux
 import { fetchAllUsers } from '../store/slices/users'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 export const ListarUsuariosAdorno = () => {
 
+    const state = useSelector(state => state.users)
+    const { list } = state;
 
     const dispatch = useDispatch()
 
@@ -20,7 +22,7 @@ export const ListarUsuariosAdorno = () => {
     <div className='container'>
         <div className='row'>
             {
-            users.map(p => (
+            list.map(p => (
                 <div key={p.id} className='col-md-3'>
                     <div className='card'>
                         <img src={p.avatar} alt="" />
