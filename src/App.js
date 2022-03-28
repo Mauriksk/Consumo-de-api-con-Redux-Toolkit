@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react';
+import React,{useEffect, useState, createContext} from 'react';
 import { Characters } from './components/Characters';
 import { Navbar } from "./components/Navbar";
 import {
@@ -9,6 +9,8 @@ import {
   NavLink
 } from "react-router-dom";
 import { Personaje } from './components/Personaje';
+import {UserContext} from './context/context';
+
 
 
 
@@ -36,22 +38,25 @@ function App() {
   }, [])
   
 
-  return (
-    <>
-      <Router>
-      <Link to='/' className='btn btn-dark'>Inicio</Link>
-      <Link to='/nosotros' className='btn btn-primary'>Nosotros</Link>
-      <Navbar brand='Rick and Morty App' />
-          
+  const initialState = {
+    persona : "hola"
+  }
 
+ const [personaje, setpersonaje] = useState(initialState)
+
+  return (
+    <UserContext.Provider value={{personaje, setpersonaje}}>
+      <Router>
+        <Navbar brand='Rick and Morty App' />
+          
         <Routes>
-            <Route path='/nosotros' element={ <Personaje /> } />
+            <Route path='/Personaje' element={ <Personaje /> } />
             <Route path='/' element={ <Characters characters={characters} info={info} fetchCharacters={fetchCharacters} /> } />
         </Routes>
           
       </Router>
-        
-    </>
+    </UserContext.Provider>
+      
   );
 }
 

@@ -1,7 +1,14 @@
-import React from 'react'
+import React, { useState, createContext, useContext } from 'react'
+import { Link } from 'react-router-dom'
+import { UserContext } from '../context/context'
+import usePersonaje from '../hooks/usePersonaje'
 import { Pagination } from './Pagination'
 
 export const Characters = ({characters = [], info, fetchCharacters}) => {
+
+    
+
+    
 
     const onPrevious = () => {
         fetchCharacters(info.prev)
@@ -13,6 +20,8 @@ export const Characters = ({characters = [], info, fetchCharacters}) => {
 
     console.log(characters)
 
+    const {personaje, setpersonaje} = useContext(UserContext)
+
     return (
 
     <div className='container mt-5'>
@@ -21,7 +30,7 @@ export const Characters = ({characters = [], info, fetchCharacters}) => {
         {
             characters.map((item, index) => {
                 return (
-                    <div key={index} className='my-card'>
+                    <Link to='/Personaje' onClick={ ()=> setpersonaje(item) } key={index} className='my-card'>
                         <img src={item.image} className="img img-responsive"/>
                         <div className="profile-position "><h3 className=''>{item.name}</h3></div>
                             <div className="profile-overview">
@@ -35,7 +44,7 @@ export const Characters = ({characters = [], info, fetchCharacters}) => {
                             </div>
                             </div>
                         </div>
-                    </div>
+                    </Link>
                 )
                 })
         }
