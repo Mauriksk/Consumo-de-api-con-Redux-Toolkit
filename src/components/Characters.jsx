@@ -1,7 +1,5 @@
 import React, { useState, createContext, useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { UserContext } from '../context/context'
-import usePersonaje from '../hooks/usePersonaje'
 import { Pagination } from './Pagination'
 
 export const Characters = ({characters = [], info, fetchCharacters}) => {
@@ -18,9 +16,6 @@ export const Characters = ({characters = [], info, fetchCharacters}) => {
         fetchCharacters(info.next)
     }
 
-    console.log(characters)
-
-    const {personaje, setpersonaje} = useContext(UserContext)
 
     return (
 
@@ -30,7 +25,7 @@ export const Characters = ({characters = [], info, fetchCharacters}) => {
         {
             characters.map((item, index) => {
                 return (
-                    <Link to='/Personaje' onClick={ ()=> setpersonaje(item) } key={index} className='my-card'>
+                    <Link to='/Personaje' key={index} className='my-card'>
                         <img src={item.image} className="img img-responsive"/>
                         <div className="profile-position "><h3 className=''>{item.name}</h3></div>
                             <div className="profile-overview">
