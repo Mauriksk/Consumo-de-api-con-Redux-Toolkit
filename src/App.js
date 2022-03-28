@@ -9,8 +9,9 @@ import {
   NavLink
 } from "react-router-dom";
 import { Personaje } from './components/Personaje';
-
-
+//Redux
+import { Provider } from 'react-redux'
+import store from './store';
 
 
 function App() {
@@ -38,7 +39,7 @@ function App() {
   
 
   return (
-    
+    <Provider store={store}>
       <Router>
         <Navbar brand='Rick and Morty App' />
           
@@ -48,7 +49,7 @@ function App() {
         </Routes>
           
       </Router>
-      
+    </Provider>
   );
 }
 
