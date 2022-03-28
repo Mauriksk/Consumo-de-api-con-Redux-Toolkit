@@ -20,14 +20,14 @@ export const ListarUsuariosAdorno = () => {
     
 
   return (
-    <div className='container'>
+    <div className='container mt-2'>
         <h2> Informacion de cada Personaje </h2>
         <div className='row'>
             {
             list.map(p => (
                 <div key={p.id} className=''>
-                    <div className='card'>
-                        <div className='card-body'>
+                    <div className='card mb-2'>
+                        <div className='card-body '>
                             <h4>Nombre : { p.name }</h4>
                             <p>Genero : { p.gender }</p>
                             <p>Location : { p.location.name }</p>
